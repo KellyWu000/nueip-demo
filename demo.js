@@ -1,4 +1,18 @@
 var tableData =  [];
+
+//重新填寫 新增    
+$(".refreshVal").on("click",function(e){
+
+  $("#addform")[0].reset();
+})
+//重新填寫 搜尋    
+$(".refreshVal").on("click",function(e){
+    console.log(e.target);
+    $("#searchform")[0].reset();
+})
+
+
+
 $(document).ready(function () {
     // alert('abc');
     var url = "ajax/ajaxCard";
@@ -13,43 +27,46 @@ $(document).ready(function () {
         var url = "ajax/ajaxCard";
         var cnname = $("#addcnname").val();
         var enname = $("#addenname").val();
+        var email =$("#email").val();
+        var phone=$("#phone").val();
         var sex = $('input:radio:checked[name="addsex"]').val();
         var ajaxobj = new AjaxObject(url, 'json');
         ajaxobj.cnname = cnname;
         ajaxobj.enname = enname;
+        ajaxobj.email = email;
+        ajaxobj.phone = phone;
         ajaxobj.sex = sex;
+
         ajaxobj.add();
 
 
-
-
-
+        
         $("#myModal").modal({
-            resizable: true,
-            height: $(window).height() * 0.4,// dialog視窗度
-            width: $(window).width() * 0.4,
-            modal: true,
+            // resizable: true,
+            // height: $(window).height() * 0.4,// dialog視窗度
+            // width: $(window).width() * 0.4,
+            // modal: true,
             buttons: {
                 // 自訂button名稱
                 "新增": function (e) {
-                    var url = "ajax/ajaxCard";
-                    var cnname = $("#addcnname").val();
-                    var enname = $("#addenname").val();
-                    var sex = $('input:radio:checked[name="addsex"]').val();
-                    var ajaxobj = new AjaxObject(url, 'json');
-                    ajaxobj.cnname = cnname;
-                    ajaxobj.enname = enname;
-                    ajaxobj.sex = sex;
-                    ajaxobj.add();
+                //    var url = "ajax/ajaxCard";
+                //     var cnname = $("#addcnname").val();
+                //     var enname = $("#addenname" ).val();
+                //     var sex = $('input:radio:checked[name="addsex"]').val();
+                //     var ajaxobj = new AjaxObject(url, 'json');
+                //     ajaxobj.cnname = cnname;
+                //     ajaxobj.enname = enname;
+                //     ajaxobj.sex = sex;
+                //     ajaxobj.add();
 
                     e.preventDefault(); // avoid to execute the actual submit of the form.
                 },
-                "重新填寫": function () {
-                    $("#addform").reset();
-                },
-                "取消": function () {
-                    $(this).dialog("close");
-                }
+                // "重新填寫": function () {
+                //     $("#addform")[0].reset();
+                // },
+                // "取消": function () {
+                //     $(this).dialog("close");
+                // }
             }
         });
     })
@@ -86,6 +103,7 @@ $(document).ready(function () {
             }
         });
     })
+  
     // 修改鈕
     $("#cardtable").on('click', '.modifybutton', function () {
         var ajaxobj = new AjaxObject(url, 'json');
@@ -99,16 +117,11 @@ $(document).ready(function () {
         ajaxobj.delete();
     })
 
-    // 自適應視窗
-    $(window).resize(function () {
-        var wWidth = $(window).width();
-        var dWidth = wWidth * 0.4;
-        var wHeight = $(window).height();
-        var dHeight = wHeight * 0.4;
-        $("#dialog-confirm").dialog("option", "width", dWidth);
-        $("#dialog-confirm").dialog("option", "height", dHeight);
-    });
+ 
 });
+
+
+
 function refreshTable(data) {
     // var HTML = '';
     $("#cardtable tbody > tr").remove();
@@ -119,14 +132,18 @@ function refreshTable(data) {
         else
             strsex = '女';
         var row = $("<tr></tr>");
-        row.append($("<td></td>").html(item.cnname));
+        row.append($("<td></td>").html(`<a href="#" class="tooltip-test text-dark text-decoration-none"  data-toggle="tooltip" data-placement="top" title="${item.cnname}${item.enname}${strsex}">${item.cnname}
+       </a>`));
         row.append($("<td></td>").html(item.enname));
         row.append($("<td></td>").html(strsex));
-        row.append($("<td></td>").html('<button id="modifybutton' + item.s_sn + '" class="modifybutton" style="font-size:16px;font-weight:bold; color:#17a2b8";outline:"none">修改 <span class="glyphicon glyphicon-list-alt"></span></button>'));
-        row.append($("<td></td>").html('<button id="deletebutton' + item.s_sn + '" class="deletebutton" style="font-size:16px;font-weight:bold;color:tomato">刪除 <span class="glyphicon glyphicon-trash"></span></button>'));
+        row.append($("<td></td>").html('<button id="modifybutton' + item.s_sn + '"type="button" class="modifybutton btn btn-info"  data-toggle="modal"  data-target="#adjustModal" style="font-size:16px;font-weight:bold; ;outline:"none";>修改 <span class="glyphicon glyphicon-list-alt"></span></button>'));
+        row.append($("<td></td>").html('<button id="deletebutton' + item.s_sn + '" type="button" class="deletebutton  btn btn-outline-danger"  data-toggle="modal"  data-target="#confirmModal" ;style="font-size:16px;font-weight:bold; ">刪除 <span class="glyphicon glyphicon-trash"></span></button>'));
         $("#cardtable").append(row);
     });
 }
+
+
+
 
 function initEdit(response) {
   var modifyid = $("#cardtable").attr('id').substring(12);
