@@ -108,12 +108,13 @@
                   <!-- 手機 -->
                   <label for="element-1">手機號碼</label>
                   <input
-                    name="phone"
+                    name="mobile"
                     style="width: 250px"
                     type="text"
-                    id="phone"
+                    id="mobile"
                     class="form-control"
                   />
+                  <div id="mobile_info"></div>
                   <!-- 信箱 -->
                   <label for="element-1">電子信箱</label>
                   <input
@@ -123,6 +124,7 @@
                     id="email"
                     class="form-control"
                   />
+                  <div id="email_info"></div>
                   <!-- 性別 -->
                   <div class="formsex">
                     <label for="element-1">性別</label>
@@ -150,12 +152,7 @@
                 </form>
               </div>
               <div class="modal-footer">
-                <button
-                  type="button"
-                  id="addbutton"
-                  class="btn btn-warning"
-                  data-dismiss="modal"
-                >
+                <button type="button" id="addbutton" class="btn btn-warning">
                   新增
                 </button>
                 <button type="button" class="btn btn-info refreshVal">
@@ -384,7 +381,7 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-warning"
+                  class="btn btn-warning modifyBtn"
                   data-dismiss="modal"
                 >
                   修改
@@ -429,6 +426,7 @@
               <div class="modal-footer">
                 <button
                   type="button"
+                  id="delBtn"
                   class="btn btn-warning"
                   data-dismiss="modal"
                 >
@@ -467,6 +465,8 @@
           <tr>
             <th>中文名字</th>
             <th>英文名字</th>
+            <th>手機號碼</th>
+            <th>郵件</th>
             <th>性別</th>
             <th>修改</th>
             <th>刪除</th>
@@ -475,176 +475,7 @@
         <tbody></tbody>
       </table>
     </div>
-    <!--新增表單-->
-    <div id="dialog-addconfirm" title="新增表單" style="display: none">
-      <form method="post" id="addform">
-        <!-- 中文姓名 -->
-        <div class="formcnname">
-          <div class="form-group">
-            <label for="element-1">中文姓名</label>
-            <input
-              name="cnname"
-              style="width: 250px"
-              type="text"
-              id="addcnname"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <!-- 英文姓名 -->
-        <div class="formenname">
-          <div class="form-group">
-            <label for="element-1">英文姓名</label>
-            <input
-              name="enname"
-              style="width: 250px"
-              type="text"
-              id="addenname"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <!-- 性別 -->
-        <div class="formsex">
-          <label for="element-1">性別</label>
-          <div class="form-group">
-            <label
-              ><input
-                type="radio"
-                name="addsex"
-                value="man"
-                class="radio"
-                checked="checked"
-              />男</label
-            >
-            <label
-              ><input
-                type="radio"
-                name="addsex"
-                value="woman"
-                class="radio"
-              />女</label
-            >
-          </div>
-        </div>
-        <!-- 確認送出 -->
-      </form>
-    </div>
 
-    <!--搜尋表單-->
-    <div id="dialog-searchconfirm" title="搜尋表單" style="display: none">
-      <form method="post" id="searchform">
-        <!-- 中文姓名 -->
-        <div class="formcnname">
-          <div class="form-group">
-            <label for="element-1">中文姓名</label>
-            <input
-              name="cnname"
-              style="width: 250px"
-              type="text"
-              id="secnname"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <!-- 英文姓名 -->
-        <div class="formenname">
-          <div class="form-group">
-            <label for="element-1">英文姓名</label>
-            <input
-              name="enname"
-              style="width: 250px"
-              type="text"
-              id="seenname"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <!-- 性別 -->
-        <div class="formsex">
-          <label for="element-1">性別</label>
-          <div class="form-group">
-            <label
-              ><input
-                type="radio"
-                name="sesex"
-                value="man"
-                class="seradio"
-              />男</label
-            >
-            <label
-              ><input
-                type="radio"
-                name="sesex"
-                value="woman"
-                class="seradio"
-              />女</label
-            >
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <!--修改表單-->
-    <div id="dialog-modifyconfirm" title="修改表單" style="display: none">
-      <form method="post" id="modifyform">
-        <!-- 中文姓名 -->
-        <div class="formcnname">
-          <div class="form-group">
-            <label for="element-1">中文姓名</label>
-            <input
-              name="cnname"
-              style="width: 250px"
-              type="text"
-              id="mocnname"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <!-- 英文姓名 -->
-        <div class="formenname">
-          <div class="form-group">
-            <label for="element-1">英文姓名</label>
-            <input
-              name="enname"
-              style="width: 250px"
-              type="text"
-              id="moenname"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <!-- 性別 -->
-        <div class="formsex">
-          <label for="element-1">性別</label>
-          <div class="sex-group">
-            <label
-              ><input
-                type="radio"
-                name="mosex"
-                value="man"
-                class="radio"
-                id="modifyman"
-              />男</label
-            >
-            <label
-              ><input
-                type="radio"
-                name="mosex"
-                value="woman"
-                class="radio"
-                id="modifywoman"
-              />女</label
-            >
-          </div>
-        </div>
-
-        <div class="formsid" style="display: none">
-          <input name="sid" id="modifysid" />
-        </div>
-        <!-- 確認送出 -->
-      </form>
-    </div>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
