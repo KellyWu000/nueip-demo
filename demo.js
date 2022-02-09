@@ -160,11 +160,11 @@ AjaxObject.prototype.alertt = function () {
 }
 
 AjaxObject.prototype.getall = function () {
-  response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","mobile":"0978907345","email":"123@gmail","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","mobile":"0978907345","email":"123@gmail","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","mobile":"0978907345","email":"123@gmail","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","mobile":"0978907345","email":"123@gmail","sex":"1"}]';
+  response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","mobile":"0978907345","email":"123@gmail.com","sex":"1"}]';
     refreshTable(JSON.parse(response));
   }
   AjaxObject.prototype.add = function () {
-    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","mobile":"0978907345","email":"123@gmail","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","mobile":"0978907345","email":"123@gmail","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","mobile":"0978907345","email":"123@gmail","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","mobile":"0978907345","email":"123@gmail","sex":"1"},{"s_sn":"52","cnname":"新增帳號","enname":"NewAccount","mobile":"0978907345","email":"123@gmail","sex":"1"}]';
+    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","mobile":"0978907345","email":"123@gmail.com","sex":"1"},{"s_sn":"52","cnname":"新增帳號","enname":"NewAccount","mobile":"0978907345","email":"123@gmail.com","sex":"1"}]';
   
     refreshTable(JSON.parse(response));
     $("#dialog-addconfirm").dialog("close");
@@ -175,7 +175,7 @@ AjaxObject.prototype.getall = function () {
     $("#dialog-modifyconfirm").dialog("close");
   }
   AjaxObject.prototype.modify_get = function () {
-    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","mobile":"0978907345","email":"123@gmail","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","mobile":"0978907345","email":"123@gmail","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","mobile":"0978907345","email":"123@gmail","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","mobile":"0978907345","email":"123@gmail","sex":"1"}]';
+    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","mobile":"0978907345","email":"123@gmail.com","sex":"1"}]';
   }
   AjaxObject.prototype.search = function () {
     response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0"}]';
