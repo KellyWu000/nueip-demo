@@ -17,7 +17,6 @@ $(".refreshVal").on("click",function(e){
 })
 
 
-
 $(document).ready(function () {
     // alert('abc');
     var url = "ajax/ajaxCard";
@@ -39,8 +38,8 @@ $(document).ready(function () {
         ajaxobj.email = email;
         ajaxobj.mobile = mobile;
         ajaxobj.sex = sex;
-//驗證手機號碼
 
+//欄位不得為空
     if($('#mobile').val()==""){
          $('#mobile_info').html('此欄位不得為空').css('color','red');
        
@@ -52,20 +51,18 @@ $(document).ready(function () {
         return false;
      }
 
- 
+  //驗證手機號碼
       if (!$("#mobile").val().match(/^09\d{8}$/)) {
         $('#mobile_info').html("手機號碼格式不正確").css('color','red');
         return false;
      }
     
 
-     
-
+ //驗證郵件
  if (!$("#email").val().match(/^([\w\.\-]){1,64}\@([\w\.\-]){1,64}$/)) {
     $('#email_info').html("郵箱格式不正確").css('color','red');
     return false;
  }
-
         ajaxobj.add();
     })
  
@@ -76,6 +73,10 @@ $(document).ready(function () {
         ajaxobj.modify_get();
     })
  
+    $('.modifyBtn').on('click',function(){
+      var ajaxobj = new AjaxObject(url, 'json');
+      ajaxobj.modify();
+    })
 
  
 });
@@ -89,7 +90,6 @@ $(document).ready(function () {
   })
     
    
-
 
 function refreshTable(data) {
     // var HTML = '';
@@ -119,9 +119,6 @@ function refreshTable(data) {
 
 function initEdit(response) {
   var modifyid = $("#cardtable").attr('id').substring(12);
-  $.each(response,function(key,item){
-
-  })
   $("#mocnname").val(response[0].cnname);
   $("#moenname").val(response[0].enname);
   if (response[0].sex == 0) {
@@ -133,9 +130,9 @@ function initEdit(response) {
       $("#modifywoman").prop("checked", true);
   }
   $("#modifysid").val(modifyid);
- 
-
+  
 }
+
 
 /**
  * 
@@ -175,7 +172,8 @@ AjaxObject.prototype.getall = function () {
     $("#dialog-modifyconfirm").dialog("close");
   }
   AjaxObject.prototype.modify_get = function () {
-    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","mobile":"0978907345","email":"123@gmail.com","sex":"1"}]';
+    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","sex":"1"}]';
+    initEdit(JSON.parse(response));
   }
   AjaxObject.prototype.search = function () {
     response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0"}]';
@@ -183,7 +181,7 @@ AjaxObject.prototype.getall = function () {
     $("#dialog-searchconfirm").dialog("close");
   }
   AjaxObject.prototype.delete = function () {
-    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","sex":"0"}]';
+    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","mobile":"0978907345","email":"123@gmail.com","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","mobile":"0978907345","email":"123@gmail.com","sex":"0"}]';
     refreshTable(JSON.parse(response));
   }
   
